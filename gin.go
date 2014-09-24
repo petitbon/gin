@@ -6,13 +6,14 @@ package gin
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin/render"
-	"github.com/julienschmidt/httprouter"
 	"html/template"
 	"math"
 	"net/http"
 	"path"
 	"sync"
+
+	"github.com/gin-gonic/gin/render"
+	"github.com/julienschmidt/httprouter"
 )
 
 const (
@@ -86,12 +87,13 @@ func Default() *Engine {
 }
 
 func (engine *Engine) LoadHTMLGlob(pattern string) {
-	if gin_mode == debugCode {
-		engine.HTMLRender = render.HTMLDebug
-	} else {
-		templ := template.Must(template.ParseGlob(pattern))
-		engine.SetHTMLTemplate(templ)
-	}
+	// commenting out what breaks
+	//	if gin_mode == debugCode {
+	//		engine.HTMLRender = render.HTMLDebug
+	//	} else {
+	templ := template.Must(template.ParseGlob(pattern))
+	engine.SetHTMLTemplate(templ)
+	//	}
 }
 
 func (engine *Engine) LoadHTMLFiles(files ...string) {
